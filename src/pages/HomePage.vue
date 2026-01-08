@@ -8,10 +8,23 @@
       <div class="w-full md:w-1/3">
         <input
           type="text"
-          @input="setFilterValue($event.target.value)"
+          @input="setSearchValue($event.target.value)"
           placeholder="Search with task title..."
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
         />
+      </div>
+      <div class="flex gap-2 items-center">
+        <label for="status_filter" class="text-lg">Filter By :</label>
+        <select
+          id="status_filter"
+          @change="setFilterValue($event.target.value)"
+          class="w-full md:w-40 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white text-gray-800"
+        >
+          <option value="">All Statuses</option>
+          <option value="not-started">Not Started</option>
+          <option value="in-progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
       </div>
     </div>
     <TasksGrid />
@@ -28,7 +41,7 @@ export default {
     TasksGrid,
   },
   methods: {
-    ...mapMutations(['setFilterValue']),
+    ...mapMutations(['setSearchValue', 'setFilterValue']),
   },
 }
 </script>

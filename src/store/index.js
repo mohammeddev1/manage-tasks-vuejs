@@ -6,16 +6,30 @@ export default createStore({
     showAlert: false,
     alertMessage: '',
     showConfirm: false,
+    searchValue: '',
     filterValue: '',
   },
 
   getters: {
     tasks(state) {
-      if (!state.filterValue) return state.tasks
-      return state.tasks.filter((task) =>
-        task.taskTitle.toLowerCase().includes(state.filterValue.trim().toLowerCase()),
-      )
+      let filteredTasks = state.tasks
+
+      if (state.searchValue) {
+        const searchLower = state.searchValue.trim().toLowerCase()
+        filteredTasks = filteredTasks.filter((task) =>
+          task.taskTitle.toLowerCase().includes(searchLower),
+        )
+      }
+
+      if (state.filterValue) {
+        console.log(state.filterValue)
+
+        filteredTasks = filteredTasks.filter((task) => task.taskStatus === state.filterValue)
+      }
+
+      return filteredTasks
     },
+
     showAlert(state) {
       return state.showAlert
     },
@@ -77,8 +91,12 @@ export default createStore({
 
       localStorage.setItem('tasks', JSON.stringify(state.tasks))
     },
+    setSearchValue(state, value) {
+      state.searchValue = value
+    },
     setFilterValue(state, value) {
       state.filterValue = value
+      console.log(state.filterValue)
     },
     show_alert(state, value) {
       state.showAlert = value
@@ -107,9 +125,11 @@ export default createStore({
         commit('alert_message', 'task Updated Success.')
       }
     },
+
     showConfirmAction({ commit }, value) {
       commit('showConfirm', value)
     },
+
     deleteTask({ commit }, id) {
       commit('delete_task', id)
       commit('showConfirm', false)

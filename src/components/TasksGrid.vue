@@ -19,7 +19,7 @@
     </div>
 
     <!-- Tasks grid -->
-    <div v-else class="grid gap-4 my-4 p-2 md:px-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div v-else class="grid gap-4 my-4 p-2 md:px-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
       <div
         v-for="(task, index) in tasks"
         :key="task.id || index"
