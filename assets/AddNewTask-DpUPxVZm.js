@@ -1,0 +1,1 @@
+import{T as s}from"./TaskForm-QuS0N21i.js";import{_ as e,c as t,a,r,o as c}from"./index-Br7zLT88.js";const n={components:{TaskForm:s}},m={class:"mt-6"};function _(p,d,f,i,k,l){const o=r("TaskForm");return c(),t("div",m,[a(o,{addTask:!0})])}const $=e(n,[["render",_]]);export{$ as default};
